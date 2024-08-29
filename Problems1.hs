@@ -4,7 +4,7 @@ import Prelude hiding (curry, uncurry)
 
 {-------------------------------------------------------------------------------
 
-CS:3820 Fall 2022 Problem Set 1
+CS:3820 Fall 2024 Problem Set 1
 ===============================
 
 This problem covers the basics of Haskell syntax.  Each problem asks you to
