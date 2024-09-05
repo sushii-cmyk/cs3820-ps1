@@ -1,3 +1,4 @@
+{-# LANGUAGE BlockArguments #-}
 module Problems1 where
 
 import Prelude hiding (curry, uncurry)
@@ -321,15 +322,9 @@ countEven :: [Int] -> Int
 countEven xs = length (filter even xs)
 
 -- >>> countEven [0..49]
--- 25
-
--- 16. Write a function which computes the average of a list of integers.
---     Remember that Haskell distinguishes between integer and floating point
---     division---you can't just apply the floating point division operator / to
---     two integers.  To convert integers to doubles (or indeed to any of many
---     other types) use the function "fromIntegral".
+-- 50
 average :: [Int] -> Double
-average xs = 1.0 / fromIntegral (length xs) * sum (map fromIntegral xs)
+average xs = sum (map fromIntegral xs) / fromIntegral (length xs)
 
 -- >>> average [1..4]
 -- 2.5
