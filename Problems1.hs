@@ -42,7 +42,7 @@ The `` make a "normal" symbol into an operator.
 -- 1.  Write a function that cubes its argument
 
 cube :: Int -> Int
-cube = undefined
+cube x = x * x * x
 
 -- >>> cube 2
 -- 8
@@ -55,7 +55,7 @@ cube = undefined
 --    more arguments: "f x y" is function "f" applied to arguments "x" and "y"
 
 cubeDiff :: Int -> Int -> Int
-cubeDiff = undefined
+cubeDiff x y = cube x - cube y
 
 -- >>> cubeDiff 4 3
 -- 37
@@ -71,7 +71,7 @@ cubeDiff = undefined
 --           | otherwise = N
 
 seven :: Int -> Bool
-seven = undefined
+seven x = x `mod` 7 == 0
 
 -- >>> seven 2
 -- False
@@ -85,7 +85,7 @@ seven = undefined
 -- 4. Write a two argument function that evalutes to 1 if its second argument is
 --    divisible by its first argument, and 0 otherwise.
 step :: Int -> Int -> Int
-step = undefined
+step x y = if (x /= 0) && (mod y x == 0) then 1 else 0
 
 -- >>> step 4 5
 -- 0
@@ -129,7 +129,7 @@ you're comfortable with it the better your semester is likely to go.
 
 -- 5. Write a function which computes the difference of a pair of integers.
 pairDiff :: (Int, Int) -> Int
-pairDiff = undefined
+pairDiff (x, y) = x - y
 
 -- >>> pairDiff (1, 4)
 -- -3
@@ -140,7 +140,7 @@ pairDiff = undefined
 -- 6. Write a two-argument function which, given a pair of integers (a, b) as
 --    its first argument and a single integers x as its second, computes ax + b.
 affine :: (Int, Int) -> Int -> Int
-affine = undefined
+affine (a, b) x = a * x + b
 
 -- >>> affine (2, 4) 3
 -- 10
@@ -157,7 +157,7 @@ affine = undefined
 --      once does the same thing as applying it once.
 
 idem :: (Int, Int) -> (Int, Int)
-idem = undefined
+idem (x, y) = (x, 0)
 
 -- 8. Write a function on pairs which:
 --
@@ -174,7 +174,7 @@ idem = undefined
 
 
 selfInv :: (a, a) -> (a, a)
-selfInv = undefined
+selfInv (x, y) = (y, x)
 
 -- Generic types, like the type of selfInv above, can actually be quite strong
 -- specifications.  There are, of course, many many functions of type "(Int,
@@ -207,7 +207,7 @@ Recall that in Haskell, the composition operator is spelled ".": so "f . g" is
 --    think about the order in which we do things, "f . g" means "do f after
 --    doing g".  Write a function that combines functions in the opposite order.
 before :: (a -> b) -> (b -> c) -> a -> c
-before = undefined
+before f g x = g (f x)
 
 -- >>> (cube `before` (+1)) 4
 -- 65
@@ -218,7 +218,7 @@ before = undefined
 -- 10. Write a two argument function which, given a function "f" and a pair "p", returns
 --     the same pair but with "f" applied to the second component of "p"
 applySnd :: (b -> c) -> (a, b) -> (a, c)
-applySnd = undefined
+applySnd f (x, y) = (x, f y)
 
 -- >>> applySnd cube (1, 2)
 -- (1,8)
@@ -235,7 +235,7 @@ applySnd = undefined
 -- 11. Write a function which, given a function that expects a pair as its first
 --     argument, instead behaves like an equivalent function of two arguments. 
 curry :: ((a, b) -> c) -> a -> b -> c
-curry = undefined
+curry f x y = f (x, y)
 
 -- >>> curry (\(x, y) -> x + y) 2 3
 -- 5
@@ -247,7 +247,7 @@ curry = undefined
 --     instead behaves like an equivalent function that expects a pair as its
 --     argument.
 uncurry :: (a -> b -> c) -> (a, b) -> c
-uncurry = undefined
+uncurry f (x, y) = f x y
 
 -- >>> uncurry (+) (2,3)
 -- 5
@@ -302,7 +302,7 @@ features.  Here are some of Haskell's list-manipulating functions:
 --     accept solutions in which the `cubed` function *either* doubles *or*
 --     cubes its argument.
 cubed :: [Int] -> [Int]
-cubed = undefined
+cubed xs = map cube xs
 
 -- >>> cubed [1,2,3]
 -- [1,8,27]
@@ -310,7 +310,7 @@ cubed = undefined
 -- 14. Write a function which, given a list of integers "xs", returns a list of
 --     the values in "xs" divisible by 7
 sevens :: [Int] -> [Int]
-sevens = undefined
+sevens xs = filter seven xs
 
 -- >>> sevens [0..50]
 -- [0,7,14,21,28,35,42,49]
@@ -318,7 +318,7 @@ sevens = undefined
 -- 15. Write a function which, given a list of integers "xs", returns the
 --     *number* of even integers in "xs".
 countEven :: [Int] -> Int
-countEven = undefined
+countEven xs = length (filter even xs)
 
 -- >>> countEven [0..49]
 -- 25
@@ -329,7 +329,7 @@ countEven = undefined
 --     two integers.  To convert integers to doubles (or indeed to any of many
 --     other types) use the function "fromIntegral".
 average :: [Int] -> Double
-average = undefined
+average xs = 1.0 / fromIntegral (length xs) * sum (map fromIntegral xs)
 
 -- >>> average [1..4]
 -- 2.5
